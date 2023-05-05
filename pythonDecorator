@@ -1,0 +1,61 @@
+def log_message(func): 
+
+    def wrapper(*args, **kwargs): 
+
+        # Call the original function 
+
+        result = func(*args, **kwargs) 
+
+         
+
+        # Write the result to the file 
+
+        with open('python decorater.txt', 'a') as f: 
+
+            f.write(str(result) + '\n') 
+
+         
+
+        # Return the result 
+
+        return result 
+
+     
+
+    return wrapper 
+
+  
+
+@log_message 
+
+def a_function_that_returns_a_string(): 
+
+    return "A string" 
+
+  
+
+@log_message 
+
+def a_function_that_returns_a_string_with_newline(s): 
+
+    return "\n" + str(s) 
+
+  
+
+@log_message 
+
+def a_function_that_returns_another_string(string=""): 
+
+    return "Another string" 
+
+  
+
+# Testing the decorated functions 
+
+print(a_function_that_returns_a_string())  # Prints: A string 
+
+text = str(input("Enter a string")) 
+
+print(a_function_that_returns_a_string_with_newline(text))  # Prints: given input 
+
+print(a_function_that_returns_another_string()) 
